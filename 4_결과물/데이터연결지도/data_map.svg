@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 674" width="1680" height="674" font-family="'Noto Sans CJK KR','Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif">
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="40" y="48" font-size="26" font-weight="700" fill="#1F2933">강원 웰니스관광 진단 · 데이터는 이렇게 연결된다</text>
+<text x="40" y="76" font-size="15" fill="#6B7280">다섯 가지 공공데이터를 시·군·기간·좌표로 엮어 지표를 만들고, 가설 다섯 개를 확인해 결론 세 개를 얻었다. 굵은 선은 핵심 메시지로 가는 길.</text>
+<text x="40" y="98" font-size="16" font-weight="700" fill="#2D6A8E">① 데이터<tspan font-weight="400" fill="#9AA3AE" font-size="13">  어디서 가져왔나</tspan></text>
+<text x="360" y="98" font-size="16" font-weight="700" fill="#6B7280">② 연결<tspan font-weight="400" fill="#9AA3AE" font-size="13">  어떻게 붙였나</tspan></text>
+<text x="660" y="98" font-size="16" font-weight="700" fill="#6B7280">③ 지표<tspan font-weight="400" fill="#9AA3AE" font-size="13">  무엇을 쟀나</tspan></text>
+<text x="970" y="98" font-size="16" font-weight="700" fill="#B7791F">④ 가설<tspan font-weight="400" fill="#9AA3AE" font-size="13">  무엇을 확인했나</tspan></text>
+<text x="1310" y="98" font-size="16" font-weight="700" fill="#C8553D">⑤ 결론<tspan font-weight="400" fill="#9AA3AE" font-size="13">  그래서 무엇을 말하나</tspan></text>
+<path d="M290.0,164.0 C325.0,164.0 325.0,268.0 354.0,268.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M353.0,264.0 L360.0,268.0 L353.0,272.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M290.0,268.0 C325.0,268.0 325.0,268.0 354.0,268.0" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M353.0,264.0 L360.0,268.0 L353.0,272.0" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M290.0,372.0 C325.0,372.0 325.0,268.0 354.0,268.0" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M353.0,264.0 L360.0,268.0 L353.0,272.0" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M290.0,476.0 C325.0,476.0 325.0,268.0 354.0,268.0" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M353.0,264.0 L360.0,268.0 L353.0,272.0" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M290.0,580.0 C325.0,580.0 325.0,268.0 354.0,268.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M353.0,264.0 L360.0,268.0 L353.0,272.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M290.0,164.0 C325.0,164.0 325.0,362.5 354.0,362.5" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M353.0,358.5 L360.0,362.5 L353.0,366.5" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M290.0,268.0 C325.0,268.0 325.0,362.5 354.0,362.5" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M353.0,358.5 L360.0,362.5 L353.0,366.5" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M290.0,372.0 C325.0,372.0 325.0,466.5 354.0,466.5" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M353.0,462.5 L360.0,466.5 L353.0,470.5" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M290.0,580.0 C325.0,580.0 325.0,466.5 354.0,466.5" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M353.0,462.5 L360.0,466.5 L353.0,470.5" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M590.0,268.0 C625.0,268.0 625.0,202.0 654.0,202.0" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M653.0,198.0 L660.0,202.0 L653.0,206.0" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M590.0,362.5 C625.0,362.5 625.0,287.0 654.0,287.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M653.0,283.0 L660.0,287.0 L653.0,291.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M590.0,268.0 C625.0,268.0 625.0,372.0 654.0,372.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M653.0,368.0 L660.0,372.0 L653.0,376.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M590.0,268.0 C625.0,268.0 625.0,457.0 654.0,457.0" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M653.0,453.0 L660.0,457.0 L653.0,461.0" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M590.0,466.5 C625.0,466.5 625.0,542.0 654.0,542.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M653.0,538.0 L660.0,542.0 L653.0,546.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M900.0,202.0 C935.0,202.0 935.0,202.0 964.0,202.0" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M963.0,198.0 L970.0,202.0 L963.0,206.0" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M900.0,287.0 C935.0,287.0 935.0,287.0 964.0,287.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M963.0,283.0 L970.0,287.0 L963.0,291.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M900.0,372.0 C935.0,372.0 935.0,372.0 964.0,372.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M963.0,368.0 L970.0,372.0 L963.0,376.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M900.0,457.0 C935.0,457.0 935.0,457.0 964.0,457.0" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M963.0,453.0 L970.0,457.0 L963.0,461.0" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M900.0,542.0 C935.0,542.0 935.0,542.0 964.0,542.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M963.0,538.0 L970.0,542.0 L963.0,546.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M1240.0,457.0 C1275.0,457.0 1275.0,229.5 1304.0,229.5" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M1303.0,225.5 L1310.0,229.5 L1303.0,233.5" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M1240.0,202.0 C1275.0,202.0 1275.0,229.5 1304.0,229.5" fill="none" stroke="#C8553D" stroke-width="2.6" stroke-opacity="0.9"/>
+<path d="M1303.0,225.5 L1310.0,229.5 L1303.0,233.5" fill="none" stroke="#C8553D" stroke-width="2"/>
+<path d="M1240.0,202.0 C1275.0,202.0 1275.0,392.5 1304.0,392.5" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M1303.0,388.5 L1310.0,392.5 L1303.0,396.5" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M1240.0,287.0 C1275.0,287.0 1275.0,392.5 1304.0,392.5" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M1303.0,388.5 L1310.0,392.5 L1303.0,396.5" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M1240.0,372.0 C1275.0,372.0 1275.0,392.5 1304.0,392.5" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M1303.0,388.5 L1310.0,392.5 L1303.0,396.5" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M1240.0,457.0 C1275.0,457.0 1275.0,392.5 1304.0,392.5" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M1303.0,388.5 L1310.0,392.5 L1303.0,396.5" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<path d="M1240.0,542.0 C1275.0,542.0 1275.0,535.0 1304.0,535.0" fill="none" stroke="#C3C9D1" stroke-width="1.4" stroke-opacity="1"/>
+<path d="M1303.0,531.0 L1310.0,535.0 L1303.0,539.0" fill="none" stroke="#C3C9D1" stroke-width="1.4"/>
+<rect x="40" y="120.0" width="250" height="88.0" rx="10" fill="#EAF2F8" stroke="#2D6A8E" stroke-width="1.4"/>
+<text x="54" y="151.0" font-size="16" font-weight="700" fill="#1F2933">방문자</text>
+<text x="54" y="175.0" font-size="13.5" fill="#4B5563">한국관광 데이터랩 · 이동통신</text>
+<text x="54" y="194.0" font-size="13.5" fill="#4B5563">내국인·외국인, 월·시군</text>
+<rect x="40" y="224.0" width="250" height="88.0" rx="10" fill="#EAF2F8" stroke="#2D6A8E" stroke-width="1.4"/>
+<text x="54" y="255.0" font-size="16" font-weight="700" fill="#1F2933">관광 지출</text>
+<text x="54" y="279.0" font-size="13.5" fill="#4B5563">한국관광 데이터랩 · 신용카드</text>
+<text x="54" y="298.0" font-size="13.5" fill="#4B5563">업종 22개, 월·시군</text>
+<rect x="40" y="328.0" width="250" height="88.0" rx="10" fill="#EAF2F8" stroke="#2D6A8E" stroke-width="1.4"/>
+<text x="54" y="359.0" font-size="16" font-weight="700" fill="#1F2933">웰니스 자원</text>
+<text x="54" y="383.0" font-size="13.5" fill="#4B5563">관광공사 API</text>
+<text x="54" y="402.0" font-size="13.5" fill="#4B5563">웰니스 15곳 + 휴양림 94곳, 좌표</text>
+<rect x="40" y="432.0" width="250" height="88.0" rx="10" fill="#EAF2F8" stroke="#2D6A8E" stroke-width="1.4"/>
+<text x="54" y="463.0" font-size="16" font-weight="700" fill="#1F2933">숙박</text>
+<text x="54" y="487.0" font-size="13.5" fill="#4B5563">관광공사 API</text>
+<text x="54" y="506.0" font-size="13.5" fill="#4B5563">등록 숙박 531곳</text>
+<rect x="40" y="536.0" width="250" height="88.0" rx="10" fill="#EAF2F8" stroke="#2D6A8E" stroke-width="1.4"/>
+<text x="54" y="567.0" font-size="16" font-weight="700" fill="#1F2933">의료기관</text>
+<text x="54" y="591.0" font-size="13.5" fill="#4B5563">심평원 API</text>
+<text x="54" y="610.0" font-size="13.5" fill="#4B5563">1,992곳 (종합병원 16), 좌표</text>
+<rect x="360" y="233.5" width="230" height="69.0" rx="22" fill="#F3F4F6" stroke="#6B7280" stroke-width="1.4"/>
+<text x="374" y="264.5" font-size="16" font-weight="700" fill="#1F2933">시·군으로 합치기</text>
+<text x="374" y="288.5" font-size="13.5" fill="#4B5563">18개 시·군 이름이 공통 열쇠</text>
+<rect x="360" y="318.5" width="230" height="88.0" rx="22" fill="#F3F4F6" stroke="#6B7280" stroke-width="1.4"/>
+<text x="374" y="349.5" font-size="16" font-weight="700" fill="#1F2933">기간 맞추기</text>
+<text x="374" y="373.5" font-size="13.5" fill="#4B5563">2025.11–2026.10, 월별</text>
+<text x="374" y="392.5" font-size="13.5" fill="#4B5563">외국인은 겹치는 11개월</text>
+<rect x="360" y="422.5" width="230" height="88.0" rx="22" fill="#F3F4F6" stroke="#6B7280" stroke-width="1.4"/>
+<text x="374" y="453.5" font-size="16" font-weight="700" fill="#1F2933">좌표로 거리 재기</text>
+<text x="374" y="477.5" font-size="13.5" fill="#4B5563">자원마다 가장 가까운</text>
+<text x="374" y="496.5" font-size="13.5" fill="#4B5563">종합병원까지 km</text>
+<rect x="660" y="167.5" width="240" height="69.0" rx="10" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.4"/>
+<text x="674" y="198.5" font-size="16" font-weight="700" fill="#1F2933">숙박 비중</text>
+<text x="674" y="222.5" font-size="13.5" fill="#4B5563">숙박 지출 ÷ 관광 지출</text>
+<rect x="660" y="252.5" width="240" height="69.0" rx="10" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.4"/>
+<text x="674" y="283.5" font-size="16" font-weight="700" fill="#1F2933">계절 편차</text>
+<text x="674" y="307.5" font-size="13.5" fill="#4B5563">가장 많은 달 ÷ 가장 적은 달</text>
+<rect x="660" y="337.5" width="240" height="69.0" rx="10" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.4"/>
+<text x="674" y="368.5" font-size="16" font-weight="700" fill="#1F2933">1명당 지출</text>
+<text x="674" y="392.5" font-size="13.5" fill="#4B5563">관광 지출 ÷ 외지인 방문자</text>
+<rect x="660" y="422.5" width="240" height="69.0" rx="10" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.4"/>
+<text x="674" y="453.5" font-size="16" font-weight="700" fill="#1F2933">자원 대비 지출</text>
+<text x="674" y="477.5" font-size="13.5" fill="#4B5563">지출 몫 ÷ 웰니스 자원 몫</text>
+<rect x="660" y="507.5" width="240" height="69.0" rx="10" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.4"/>
+<text x="674" y="538.5" font-size="16" font-weight="700" fill="#1F2933">의료 접근성</text>
+<text x="674" y="562.5" font-size="13.5" fill="#4B5563">자원 → 종합병원 거리, 의사 수</text>
+<rect x="970" y="167.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
+<text x="984" y="198.5" font-size="16" font-weight="700" fill="#1F2933">A 체류</text>
+<text x="984" y="222.5" font-size="13.5" fill="#4B5563">자고 가나?  숙박 5% 미만이면 약함</text>
+<rect x="970" y="252.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
+<text x="984" y="283.5" font-size="16" font-weight="700" fill="#1F2933">B 비수기</text>
+<text x="984" y="307.5" font-size="13.5" fill="#4B5563">계절을 타나?  2.4배 이상이면 의존</text>
+<rect x="970" y="337.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
+<text x="984" y="368.5" font-size="16" font-weight="700" fill="#1F2933">C 객단가</text>
+<text x="984" y="392.5" font-size="13.5" fill="#4B5563">얼마 쓰나?  1만 5천 원 미만이면 낮음</text>
+<rect x="970" y="422.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
+<text x="984" y="453.5" font-size="16" font-weight="700" fill="#1F2933">D 미스매치</text>
+<text x="984" y="477.5" font-size="13.5" fill="#4B5563">자원만큼 버나?  0.6배 미만이면 미활용</text>
+<rect x="970" y="507.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
+<text x="984" y="538.5" font-size="16" font-weight="700" fill="#1F2933">E 의료 연계</text>
+<text x="984" y="562.5" font-size="13.5" fill="#4B5563">병원이 가까운가?</text>
+<rect x="1310" y="165.0" width="330" height="129.0" rx="10" fill="#FCEDE9" stroke="#C8553D" stroke-width="2.2"/>
+<text x="1324" y="196.0" font-size="17" font-weight="700" fill="#1F2933">자원은 사람을 부르지만,</text>
+<text x="1324" y="218.0" font-size="17" font-weight="700" fill="#1F2933">돈은 숙박을 따라간다</text>
+<text x="1324" y="242.0" font-size="13.5" fill="#4B5563">자원↔방문 ρ 0.52 (뚜렷)</text>
+<text x="1324" y="261.0" font-size="13.5" fill="#4B5563">자원↔지출 ρ 0.39 (뚜렷하지 않음)</text>
+<text x="1324" y="280.0" font-size="13.5" fill="#4B5563">숙박↔지출 ρ 0.67 (뚜렷)</text>
+<rect x="1310" y="328.0" width="330" height="129.0" rx="10" fill="#FCEDE9" stroke="#C8553D" stroke-width="2.2"/>
+<text x="1324" y="359.0" font-size="17" font-weight="700" fill="#1F2933">시·군마다 막힌 곳이 달라</text>
+<text x="1324" y="381.0" font-size="17" font-weight="700" fill="#1F2933">처방도 다르다</text>
+<text x="1324" y="405.0" font-size="13.5" fill="#4B5563">자원이 돈이 되지 못하는 곳 7</text>
+<text x="1324" y="424.0" font-size="13.5" fill="#4B5563">계절에 쏠리는 곳 4 · 당일치기 도시 3</text>
+<text x="1324" y="443.0" font-size="13.5" fill="#4B5563">체류·소비 거점 4</text>
+<rect x="1310" y="491.0" width="330" height="88.0" rx="10" fill="#FCEDE9" stroke="#C8553D" stroke-width="2.2"/>
+<text x="1324" y="522.0" font-size="17" font-weight="700" fill="#1F2933">의료웰니스 거점은 원주뿐</text>
+<text x="1324" y="546.0" font-size="13.5" fill="#4B5563">양양·정선·평창 종합병원 0곳</text>
+<text x="1324" y="565.0" font-size="13.5" fill="#4B5563">의사 수↔외국인 의료관광 ρ 0.85</text>
+<text x="40" y="656" font-size="12.5" fill="#9AA3AE">ρ: 18개 시·군 순위 상관(Spearman). 함께 움직이는 정도이며 원인을 증명하지 않는다. 출처: 한국관광 데이터랩, 한국관광공사·건강보험심사평가원 공공데이터 API.</text>
+</svg>

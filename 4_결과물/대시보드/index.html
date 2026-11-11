@@ -1,0 +1,564 @@
+<meta name="dash-one-writer">
+<style>
+.gw { display: flex; flex-direction: column; gap: calc(var(--cds-gap-xl) * 1.6); font-family: var(--font-anthropic-sans); color: var(--color-fg); max-width: 960px; }
+.gw h1 { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); letter-spacing: .04em; margin: 0; }
+.gw h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.gw .step { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: .04em; margin: 0; }
+.gw .msg { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(1.6rem, 4.2vw, 2.4rem); line-height: 1.25; margin: var(--cds-gap-sm) 0 0; text-wrap: balance; max-width: 22ch; }
+.gw .msg2 { font-size: var(--cds-font-size-body); margin: var(--cds-gap-sm) 0 0; line-height: 1.6; max-width: 60ch; }
+.gw .sub { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; max-width: 70ch; line-height: 1.55; }
+.gw section { display: flex; flex-direction: column; gap: var(--cds-gap-md); min-width: 0; }
+.gw .head { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.gw .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--cds-gap-md); }
+.gw .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.gw .tile { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.gw .tile .v { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2.1rem; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.gw .tile .v small { font-size: 1rem; color: var(--color-fg-muted); margin-left: 2px; }
+.gw .tile .k { font-size: var(--cds-font-size-body); line-height: 1.4; }
+.gw .tile .n { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.gw .chart { position: relative; width: 100%; }
+.gw .chart svg { display: block; width: 100%; overflow: visible; }
+.gw .chart text { font-family: var(--font-anthropic-sans); }
+.gw .axis text, .gw .lbl { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); }
+.gw .axis path, .gw .axis line { stroke: var(--cds-chart-axis); }
+.gw .grid line { stroke: var(--cds-chart-grid); }
+.gw .grid path { display: none; }
+.gw .node-t { fill: var(--color-fg); font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+.gw .node-s { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); }
+.gw .edge-t { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); }
+.gw .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md); font-size: var(--cds-font-size-caption); color: var(--color-fg); white-space: nowrap; z-index: 2; }
+.gw .tip b { font-weight: var(--cds-font-weight-medium); }
+.gw .tip .m2 { color: var(--cds-text-secondary); }
+.gw .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.gw .legend span { display: inline-flex; align-items: center; gap: 6px; }
+.gw .legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.gw .legend i.dot { border-radius: 50%; }
+.gw .groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--cds-gap-md); }
+.gw .group { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.gw .group .gname { font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-body); }
+.gw .group .gwho { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; min-height: 2.9em; }
+.gw .group .gfig { display: flex; align-items: baseline; gap: 6px; }
+.gw .group .gfig .v { font-family: var(--font-anthropic-serif); font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+.gw .group .gfig .k { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.gw .group .gdo { border-top: 1px solid var(--color-border-line); padding-top: var(--cds-gap-sm); font-size: var(--cds-font-size-body); line-height: 1.5; }
+.gw .group .gdo span { display: block; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: 2px; }
+.gw .group.ok { background: transparent; }
+.gw details { border-top: 1px solid var(--color-border-line); padding-top: var(--cds-gap-md); }
+.gw details + details { margin-top: calc(var(--cds-gap-md) * -1); }
+.gw details summary { cursor: pointer; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+.gw details[open] summary { margin-bottom: var(--cds-gap-md); }
+.gw details .inner { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.gw .appendix { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.gw .tablewrap { overflow-x: auto; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+.gw table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.gw th, .gw td { padding: var(--cds-pad-sm) var(--cds-pad-md); text-align: left; border-bottom: 1px solid var(--color-border-line); }
+.gw th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); white-space: nowrap; background: var(--color-panel); }
+.gw td { white-space: nowrap; }
+.gw td.num, .gw th.num { text-align: right; }
+.gw td.flag, .gw th.flag { text-align: center; }
+.gw tr:last-child td { border-bottom: 0; }
+.gw .on { color: var(--color-bad); font-weight: var(--cds-font-weight-medium); }
+.gw .off { color: var(--color-fg-muted); }
+.gw ul.notes { margin: 0; padding-left: 1.2em; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.65; }
+.gw [data-dash-source-state=refreshing] { opacity: .5; }
+</style>
+
+<div class="gw" lang="ko">
+  <header id="top" data-read lang="ko">
+    <h1>강원 웰니스관광 진단 · 18개 시·군 · 2025.11–2026.10</h1>
+    <p class="msg">웰니스 자원은 사람을 부르지만, 머물고 돈을 쓰게 하지는 못한다.</p>
+    <p class="msg2">강원은 숲·온천 같은 웰니스 자원이 많고 2026년 정부 웰니스 관광 클러스터로도 선정됐습니다. 데이터로 보면 자원이 많은 곳에 사람은 더 오지만, 지출과 함께 움직이는 것은 자원이 아니라 숙박입니다. 병목은 머물 수 있는 기반으로 보입니다.</p>
+  </header>
+
+  <div class="tiles" id="kpis">
+    <div class="card tile">
+      <span class="v"><span data-draw="t-d" data-source="summary" data-field="자원미활용_시군수" data-row="0">—</span><small>/ 18곳</small></span>
+      <span class="k">웰니스 자원에 비해 관광 지출이 적은 시·군</span>
+      <span class="n">지출 점유가 자원 점유의 0.6배 미만</span>
+    </div>
+    <div class="card tile">
+      <span class="v" data-draw="t-lodg" data-source="summary" data-field="숙박비중_pct" data-row="0">—</span>
+      <span class="k">강원 관광 지출 중 숙박에 쓰는 비중</span>
+      <span class="n">호텔·콘도·펜션·기타숙박, 내국인 카드 기준</span>
+    </div>
+    <div class="card tile">
+      <span class="v"><span data-draw="t-c" data-source="summary" data-field="클러스터_자원미활용" data-row="0">—</span><small>/ 4곳</small></span>
+      <span class="k">정부 웰니스 클러스터 중 자원 대비 지출이 낮은 곳</span>
+      <span class="n">클러스터: 원주·양양·평창·정선</span>
+    </div>
+  </div>
+
+  <section id="evidence">
+    <div class="head">
+      <p class="step">근거</p>
+      <h2>자원은 방문과, 숙박은 지출과 함께 움직인다</h2>
+      <p class="sub">18개 시·군의 순위 상관(Spearman ρ, 1에 가까울수록 함께 커짐). 실선은 통계적으로 뚜렷한 관계(p&lt;0.05), 점선은 뚜렷하지 않은 관계입니다. 함께 움직인다는 뜻이며 원인을 증명하지는 않습니다.</p>
+    </div>
+    <div class="card"><div class="chart" data-draw="chain" data-source="relations" style="min-height:240px"></div></div>
+  </section>
+
+  <section id="where">
+    <div class="head">
+      <p class="step">어디서</p>
+      <h2>자원 몫만큼 돈이 들어오지 않는 시·군</h2>
+      <p class="sub">강원 관광 지출에서 차지하는 몫 ÷ 웰니스 자원(관광공사 웰니스 관광지 + 휴양림·수목원)에서 차지하는 몫. 1배보다 작으면 자원에 비해 돈이 덜 들어오는 곳입니다. ★ 웰니스 관광 클러스터.</p>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--cds-chart-status-critical)"></i>0.6배 미만</span>
+      <span><i data-draw="gap-key"></i>0.6배 이상</span>
+    </div>
+    <div class="chart" data-draw="gap" data-source="diagnosis" style="min-height:440px"></div>
+  </section>
+
+  <section id="action">
+    <div class="head">
+      <p class="step">그래서</p>
+      <h2>시·군마다 막힌 곳이 달라 처방도 달라야 한다</h2>
+      <p class="sub">숙박 비중, 계절 편차, 1명당 지출, 자원 대비 지출 네 기준으로 18개 시·군을 진단해 네 묶음으로 나눴습니다.</p>
+    </div>
+    <div class="groups">
+      <div class="card group" id="g1">
+        <span class="gname">자원이 돈이 되지 못하는 곳</span>
+        <span class="gwho" data-draw="g-who-1" data-source="diagnosis"></span>
+        <div class="gfig"><span class="v" data-draw="g-fig-1" data-source="groups" data-field="자원대비지출_배" data-where="묶음순서=1">—</span><span class="k">자원 대비 지출 (평균)</span></div>
+        <div class="gdo"><span>처방</span>휴양림·온천 같은 웰니스 자원을 숙박과 묶은 체류 상품</div>
+      </div>
+      <div class="card group" id="g2">
+        <span class="gname">계절에 쏠리는 곳</span>
+        <span class="gwho" data-draw="g-who-2" data-source="diagnosis"></span>
+        <div class="gfig"><span class="v" data-draw="g-fig-2" data-source="groups" data-field="지출계절편차_배" data-where="묶음순서=2">—</span><span class="k">최고 달 ÷ 최저 달 (평균)</span></div>
+        <div class="gdo"><span>처방</span>여름·스키철 밖을 채우는 웰니스·수면 프로그램</div>
+      </div>
+      <div class="card group" id="g3">
+        <span class="gname">당일치기 도시</span>
+        <span class="gwho" data-draw="g-who-3" data-source="diagnosis"></span>
+        <div class="gfig"><span class="v" data-draw="g-fig-3" data-source="groups" data-field="숙박비중_pct" data-where="묶음순서=3">—</span><span class="k">숙박 비중 (평균)</span></div>
+        <div class="gdo"><span>처방</span>1박을 만드는 저녁·웰니스 콘텐츠</div>
+      </div>
+      <div class="card group ok" id="g4">
+        <span class="gname">체류·소비 거점</span>
+        <span class="gwho" data-draw="g-who-4" data-source="diagnosis"></span>
+        <div class="gfig"><span class="v" data-draw="g-fig-4" data-source="groups" data-field="외지인1명당지출_원" data-where="묶음순서=4">—</span><span class="k">외지인 1명당 지출 (평균)</span></div>
+        <div class="gdo"><span>처방</span>주변 군 지역으로 방문객을 보내는 허브</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="medical">
+    <div class="head">
+      <p class="step">더 나아가</p>
+      <h2>의료웰니스를 받을 준비가 된 클러스터는 원주뿐이다</h2>
+      <p class="sub">웰니스 자원에서 가장 가까운 종합병원(상급종합·종합병원)까지의 직선거리, 시·군 안 중앙값입니다. 빨간 막대는 시·군 안에 종합병원이 한 곳도 없는 곳입니다. 외국인 의료관광 지출은 의사 수와 함께 움직입니다(<b data-draw="med-rho" data-source="relations" data-field="rho" data-where="key=med_doctors">—</b>). 출처: 건강보험심사평가원 병원기본목록, 강원 의료기관 1,992곳.</p>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--cds-chart-status-critical)"></i>종합병원 없음</span>
+      <span><i data-draw="med-key"></i>종합병원 있음</span>
+    </div>
+    <div class="chart" data-draw="med" data-source="diagnosis" style="min-height:440px"></div>
+  </section>
+
+  <div class="appendix" id="appendix">
+    <details id="table">
+      <summary>시·군별 진단표</summary>
+      <div class="inner">
+        <p class="sub">A 숙박 비중 5% 미만 · B 계절 편차 2.4배 이상 · C 외지인 1명당 1만 5천 원 미만 · D 자원 대비 지출 0.6배 미만. '기준 바꿔도 유지'는 네 기준값을 각각 ±20% 바꾼 81가지 경우 중 같은 진단이 나온 비율입니다.</p>
+        <div class="tablewrap">
+          <table data-source="diagnosis" data-row-key="시군">
+            <thead>
+              <tr>
+                <th data-field="시군">시·군</th>
+                <th data-field="처방묶음">묶음</th>
+                <th class="flag" data-field="A_체류약함">A</th>
+                <th class="flag" data-field="B_계절의존">B</th>
+                <th class="flag" data-field="C_저객단가">C</th>
+                <th class="flag" data-field="D_자원미활용">D</th>
+                <th class="num" data-field="숙박비중_pct">숙박 비중</th>
+                <th class="num" data-field="지출계절편차_배">계절 편차</th>
+                <th class="num" data-field="외지인1명당지출_원">1명당 지출</th>
+                <th class="num" data-field="자원대비지출_배">자원 대비 지출</th>
+                <th class="num" data-field="유형유지_pct">기준 바꿔도 유지</th>
+              </tr>
+            </thead>
+            <tbody data-draw="rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details id="season">
+      <summary>월별 지출 패턴</summary>
+      <div class="inner">
+        <p class="sub">각 시·군의 월 지출을 그 시·군 월평균으로 나눈 값입니다. 진할수록 그 달에 몰립니다. 계절 편차가 큰 시·군부터 위에 놓았습니다.</p>
+        <div class="chart" data-draw="heat" data-source="monthly diagnosis" style="min-height:420px"></div>
+      </div>
+    </details>
+
+    <details id="foreign">
+      <summary>외국인 방문</summary>
+      <div class="inner">
+        <p class="sub">강원 전체 방문 중 각 시·군이 차지하는 비중입니다. 외국인 상위 3곳이 <b data-draw="f-top3" data-source="summary" data-field="외국인상위3_pct" data-row="0">—</b>를 차지해 내국인 외지인(<b data-draw="d-top3" data-source="summary" data-field="외지인상위3_pct" data-row="0">—</b>)보다 더 몰립니다. 2025.11–2026.09 기준입니다.</p>
+        <div class="legend">
+          <span><i class="dot" data-draw="fkey-dom"></i>내국인 외지인</span>
+          <span><i class="dot" data-draw="fkey-for"></i>외국인</span>
+        </div>
+        <div class="chart" data-draw="dumbbell" data-source="diagnosis" style="min-height:340px"></div>
+      </div>
+    </details>
+
+    <details id="method">
+      <summary>데이터와 한계</summary>
+      <div class="inner">
+        <ul class="notes">
+          <li>방문자: 한국관광 데이터랩 이동통신(내국인 KT, 외국인 SKT). 같은 사람을 여러 번 셀 수 있고 외지인에는 출장·통근이 섞여 있어, 시·군끼리 비교하는 용도로만 썼습니다.</li>
+          <li>지출: 한국관광 데이터랩 신용카드 관광지출(업종 22개). 카드 가맹점 위치로 집계되어 숙박 앱·여행사 선결제가 빠질 수 있습니다. 숙박 비중은 실제보다 낮게 나올 수 있습니다.</li>
+          <li>웰니스 자원: 한국관광공사 웰니스관광정보(강원 15곳) + 국문 관광정보의 휴양림·수목원(94곳). 숙박 인프라는 같은 API에 등록된 숙박 531곳입니다. 모두 관광공사 등록 기준입니다.</li>
+          <li>의료: 건강보험심사평가원 병원기본목록(강원 1,992곳). 종합병원은 상급종합·종합병원이며, 거리는 도로가 아닌 직선거리입니다. 외국인 의료관광 지출은 강원 전체 약 18억 원으로 규모가 작습니다.</li>
+          <li>상관은 18개 시·군의 1년치 비교라 인과를 증명하지 않습니다. 진단 기준값은 분석자가 정한 값이며 ±20% 민감도 분석으로 결과가 유지되는지 확인했습니다.</li>
+          <li>규칙 없이 네 지표로 k-means 군집을 만들면(k=3) 자원 미활용 군 지역 / 거점·도시 / 리조트로 나뉘며 규칙 기반 진단과의 일치도(ARI)는 0.47입니다.</li>
+          <li>재현: Python 파이프라인(원자료 → 지표 → 진단), 분석 노트북, 테스트로 같은 결과를 다시 만들 수 있습니다.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</div>
+
+<script>
+(function () {
+  const num = (v) => (v === null || v === undefined || v === '' ? NaN : +v);
+  const STAR = '★';
+  const RES_LIMIT = 0.6; // 자원 미활용 기준 (분석자가 정한 값)
+  const fmtInt = d3.format(',');
+  const short = (s) => String(s).replace(/(시|군)$/, '');
+
+  dash.calc('summary', {
+    title: '강원 전체 요약',
+    description: '진단표에서 센 시·군 수, 지출로 가중한 강원 숙박 비중, 상위 3개 시·군의 방문 점유',
+    inputs: ['diagnosis'],
+    fn: (diagnosis) => {
+      const n = (v) => +v;
+      const spend = d3.sum(diagnosis, (r) => n(r['내국인지출_억원']));
+      const lodging = d3.sum(diagnosis, (r) => n(r['내국인지출_억원']) * n(r['숙박비중_pct']) / 100);
+      const top3 = (col) => Math.round(d3.sum(diagnosis.map((r) => n(r[col])).sort((a, b) => b - a).slice(0, 3)));
+      return [{
+        '자원미활용_시군수': diagnosis.filter((r) => r['D_자원미활용'] === 'Y').length,
+        '클러스터_자원미활용': diagnosis.filter((r) => r['D_자원미활용'] === 'Y' && r['웰니스클러스터'] === 'Y').length,
+        '숙박비중_pct': Math.round((lodging / spend) * 1000) / 10,
+        '외국인상위3_pct': top3('외국인점유_pct'),
+        '외지인상위3_pct': top3('외지인점유_pct'),
+      }];
+    },
+  });
+
+  dash.calc('groups', {
+    title: '처방 묶음별 평균',
+    description: '네 처방 묶음마다 속한 시·군 지표의 단순 평균',
+    inputs: ['diagnosis'],
+    fn: (diagnosis) => {
+      const n = (v) => +v;
+      return d3.groups(diagnosis, (r) => r['묶음순서']).map(([order, rows]) => ({
+        '묶음순서': String(order),
+        '처방묶음': rows[0]['처방묶음'],
+        '시군수': rows.length,
+        '자원대비지출_배': Math.round(d3.mean(rows, (r) => n(r['자원대비지출_배'])) * 100) / 100,
+        '지출계절편차_배': Math.round(d3.mean(rows, (r) => n(r['지출계절편차_배'])) * 100) / 100,
+        '숙박비중_pct': Math.round(d3.mean(rows, (r) => n(r['숙박비중_pct'])) * 10) / 10,
+        '외지인1명당지출_원': Math.round(d3.mean(rows, (r) => n(r['외지인1명당지출_원']))),
+      })).sort((a, b) => +a['묶음순서'] - +b['묶음순서']);
+    },
+  });
+
+  const rowsOf = () => { const s = dash.data('diagnosis'); return s.status === 'ok' ? s.data : []; };
+
+  function tipFor(el) {
+    let tip = el.querySelector(':scope > .tip');
+    if (!tip) { tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; el.appendChild(tip); }
+    return tip;
+  }
+  function showTip(el, tip, lines, x, y) {
+    tip.replaceChildren();
+    lines.forEach((ln, i) => {
+      const d = document.createElement('div');
+      if (i === 0) { const b = document.createElement('b'); b.textContent = ln; d.appendChild(b); } else { d.className = 'm2'; d.textContent = ln; }
+      tip.appendChild(d);
+    });
+    tip.hidden = false;
+    const w = el.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
+    let lx = x + 12; if (lx + tw > w) lx = Math.max(0, x - tw - 12);
+    let ly = y - th - 8; if (ly < 0) ly = y + 14;
+    tip.style.left = lx + 'px'; tip.style.top = ly + 'px';
+  }
+  function gate(el, ids) {
+    const st = ids.map((id) => dash.data(id).status);
+    if (st.includes('loading')) { el.replaceChildren(); el.classList.add('dash-skeleton'); return false; }
+    el.classList.remove('dash-skeleton');
+    el.replaceChildren();
+    if (st.some((s) => s !== 'ok')) {
+      if (st.includes('error')) { const p = document.createElement('p'); p.className = 'sub'; p.textContent = '불러오지 못했습니다'; el.appendChild(p); }
+      return false;
+    }
+    return true;
+  }
+  function measure(svg, texts, cls) {
+    const t = svg.append('text').attr('class', cls || 'lbl');
+    let m = 0; texts.forEach((s) => { t.text(s); m = Math.max(m, t.node().getComputedTextLength()); });
+    t.remove(); return m;
+  }
+
+  function single(src, field, fmt, where) {
+    return (el) => {
+      const s = dash.data(src);
+      const row = s.status === 'ok' && s.data ? (where ? s.data.find(where) : s.data[0]) : null;
+      el.textContent = row ? fmt(row[field]) : '—';
+    };
+  }
+  dash.draw('t-d', single('summary', '자원미활용_시군수', String));
+  dash.draw('t-lodg', single('summary', '숙박비중_pct', (v) => v + '%'));
+  dash.draw('t-c', single('summary', '클러스터_자원미활용', String));
+  dash.draw('f-top3', single('summary', '외국인상위3_pct', (v) => v + '%'));
+  dash.draw('d-top3', single('summary', '외지인상위3_pct', (v) => v + '%'));
+  dash.draw('gap-key', (el) => { el.style.background = dash.colors[0]; });
+  dash.draw('fkey-dom', (el) => { el.style.background = 'var(--cds-chart-muted)'; });
+  dash.draw('fkey-for', (el) => { el.style.background = dash.colors[0]; });
+
+  // 처방 묶음: 시·군 목록과 대표 숫자
+  [1, 2, 3, 4].forEach((g) => {
+    dash.draw('g-who-' + g, (el) => {
+      const rows = rowsOf().filter((r) => +r['묶음순서'] === g).sort((a, b) => num(b['외지인_만명']) - num(a['외지인_만명']));
+      el.textContent = rows.map((r) => short(r['시군']) + (r['웰니스클러스터'] === 'Y' ? STAR : '')).join(' · ');
+    });
+  });
+  const byGroup = (g) => (r) => r['묶음순서'] === String(g);
+  dash.draw('g-fig-1', single('groups', '자원대비지출_배', (v) => (+v).toFixed(2) + '배', byGroup(1)));
+  dash.draw('g-fig-2', single('groups', '지출계절편차_배', (v) => (+v).toFixed(1) + '배', byGroup(2)));
+  dash.draw('g-fig-3', single('groups', '숙박비중_pct', (v) => (+v).toFixed(1) + '%', byGroup(3)));
+  dash.draw('g-fig-4', single('groups', '외지인1명당지출_원', (v) => fmtInt(v) + '원', byGroup(4)));
+
+  // ---- 근거: 연결 고리 그림 ----
+  dash.draw('chain', (el) => {
+    if (!gate(el, ['relations'])) return;
+    const rel = Object.fromEntries(dash.data('relations').data.map((r) => [r['key'], { rho: num(r['rho']), p: num(r['p값']), sig: r['유의(p<0.05)'] === 'Y' }]));
+    const W = el.clientWidth || 600;
+    const narrow = W < 460;
+    const bw = Math.min(210, W * (narrow ? 0.42 : 0.32)), bh = 58;
+    const gapY = narrow ? 120 : 110;
+    const H = bh * 2 + gapY + 8;
+    const L = 0, R = W - bw;
+    const nodes = {
+      res: { x: L, y: 0, t: '웰니스 자원', s: '웰니스 관광지·휴양림' },
+      vis: { x: R, y: 0, t: '외지인 방문', s: '이동통신 방문자' },
+      spend: { x: L, y: bh + gapY, t: '관광 지출', s: '카드 관광 지출', main: true },
+      stay: { x: R, y: bh + gapY, t: '숙박 인프라', s: '관광공사 등록 숙박' },
+    };
+    const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H)
+      .attr('role', 'img').attr('aria-label', '웰니스 자원은 외지인 방문과 함께 움직이지만 관광 지출과는 뚜렷하지 않고, 숙박 인프라는 관광 지출과 함께 움직인다');
+    const defs = svg.append('defs');
+    const mk = (id, color) => defs.append('marker').attr('id', id).attr('viewBox', '0 0 10 10').attr('refX', 9).attr('refY', 5)
+      .attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto-start-reverse')
+      .append('path').attr('d', 'M0,0 L10,5 L0,10 z').style('fill', color);
+    mk('gw-arrow-strong', dash.colors[0]);
+    mk('gw-arrow-weak', 'var(--cds-chart-muted)');
+
+    const fmtP = (p) => (p < 0.001 ? 'p<0.001' : 'p=' + p.toFixed(3));
+    function edge(a, b, r, label) {
+      const A = nodes[a], B = nodes[b];
+      let x1, y1, x2, y2;
+      if (A.y === B.y) { // 가로
+        const ltr = A.x < B.x;
+        x1 = ltr ? A.x + bw : A.x; x2 = ltr ? B.x : B.x + bw; y1 = y2 = A.y + bh / 2;
+      } else { // 세로
+        x1 = x2 = A.x + Math.min(bw / 2, 60); y1 = A.y + bh; y2 = B.y;
+      }
+      const strong = r && r.sig;
+      svg.append('line').attr('x1', x1).attr('y1', y1).attr('x2', x2 - (x2 > x1 ? 3 : x2 < x1 ? -3 : 0)).attr('y2', y2 - (y2 > y1 ? 3 : 0))
+        .style('stroke', strong ? dash.colors[0] : 'var(--cds-chart-muted)')
+        .style('stroke-width', strong ? 3 : 2).style('stroke-dasharray', strong ? null : '5 4')
+        .attr('marker-end', `url(#${strong ? 'gw-arrow-strong' : 'gw-arrow-weak'})`);
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      const lines = [r ? `ρ ${r.rho.toFixed(2)} · ${fmtP(r.p)}` : 'ρ —', label];
+      const g = svg.append('g');
+      const vertical = x1 === x2;
+      const tx = vertical ? x1 + 12 : mx, anchor = vertical ? 'start' : 'middle';
+      const ty0 = vertical ? my - 8 : my - 16;
+      const t1 = g.append('text').attr('class', 'edge-t').attr('x', tx).attr('y', ty0).attr('text-anchor', anchor)
+        .style('fill', strong ? 'var(--color-fg)' : 'var(--cds-text-secondary)').text(lines[0]);
+      const t2 = g.append('text').attr('class', 'lbl').attr('x', tx).attr('y', ty0 + 16).attr('text-anchor', anchor).text(lines[1]);
+      if (!vertical) { // 선 위 글자가 읽히도록 배경
+        const bb = g.node().getBBox();
+        g.insert('rect', 'text').attr('x', bb.x - 6).attr('y', bb.y - 3).attr('width', bb.width + 12).attr('height', bb.height + 6).attr('rx', 4).style('fill', 'var(--color-panel)');
+      }
+    }
+    edge('res', 'vis', rel.res_vis, '함께 움직임');
+    edge('res', 'spend', rel.res_spend, '뚜렷하지 않음');
+    edge('stay', 'spend', rel.stay_spend, '함께 움직임');
+
+    Object.values(nodes).forEach((n) => {
+      const g = svg.append('g').attr('transform', `translate(${n.x},${n.y})`);
+      g.append('rect').attr('width', bw).attr('height', bh).attr('rx', 8)
+        .style('fill', 'var(--color-bg)').style('stroke', n.main ? 'var(--color-fg)' : 'var(--color-border-line)').style('stroke-width', n.main ? 1.5 : 1);
+      g.append('text').attr('class', 'node-t').attr('x', 14).attr('y', 24).text(n.t);
+      g.append('text').attr('class', 'node-s').attr('x', 14).attr('y', 43).text(n.s);
+    });
+  });
+
+  // ---- 어디서: 자원 대비 지출 막대 ----
+  dash.draw('gap', (el) => {
+    if (!gate(el, ['diagnosis'])) return;
+    const rows = rowsOf().map((r) => ({ name: r['시군'], v: num(r['자원대비지출_배']), cl: r['웰니스클러스터'] === 'Y', r }))
+      .filter((d) => !isNaN(d.v)).sort((a, b) => a.v - b.v);
+    const W = el.clientWidth || 600, rowH = 22;
+    const svg = d3.select(el).append('svg');
+    const lab = (d) => (d.cl ? STAR + ' ' : '') + short(d.name);
+    const ml = measure(svg, rows.map(lab)) + 10, mr = measure(svg, rows.map((d) => d.v.toFixed(2) + '배')) + 10, mt = 22, mb = 6;
+    const H = mt + mb + rows.length * rowH;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H).attr('role', 'img').attr('aria-label', '시·군별 웰니스 자원 대비 관광 지출');
+    const x = d3.scaleLinear().domain([0, d3.max(rows, (d) => d.v) * 1.02]).range([ml, W - mr]);
+    const y = d3.scaleBand().domain(rows.map((d) => d.name)).range([mt, H - mb]).padding(0.3);
+    const nt = Math.max(2, Math.floor((W - ml - mr) / 90));
+    svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${mt})`).call(d3.axisTop(x).ticks(nt).tickSize(-(H - mt - mb)).tickFormat(''));
+    svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${mt})`).call(d3.axisTop(x).ticks(nt).tickFormat((v) => v + '배').tickSizeOuter(0)).call((g) => g.select('.domain').remove());
+    const tip = tipFor(el);
+    svg.append('g').selectAll('rect').data(rows).join('rect')
+      .attr('x', x(0)).attr('y', (d) => y(d.name)).attr('height', y.bandwidth()).attr('width', (d) => Math.max(1, x(d.v) - x(0))).attr('rx', 2)
+      .style('fill', (d) => (d.v < RES_LIMIT ? 'var(--cds-chart-status-critical)' : dash.colors[0]))
+      .on('pointermove', (ev, d) => {
+        const [px, py] = d3.pointer(ev, el);
+        showTip(el, tip, [d.name + (d.cl ? ' (클러스터)' : ''), '자원 대비 지출 ' + d.v.toFixed(2) + '배', '웰니스 자원 ' + d.r['웰니스자원_곳'] + '곳', '묶음: ' + d.r['처방묶음']], px, py);
+      })
+      .on('pointerleave', () => { tip.hidden = true; });
+    svg.append('g').selectAll('text').data(rows).join('text').attr('class', 'lbl')
+      .attr('x', ml - 8).attr('y', (d) => y(d.name) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text(lab);
+    svg.append('g').selectAll('text').data(rows).join('text').attr('class', 'lbl')
+      .attr('x', (d) => x(d.v) + 6).attr('y', (d) => y(d.name) + y.bandwidth() / 2).attr('dy', '0.35em').text((d) => d.v.toFixed(2) + '배');
+    const one = x(1);
+    if (one > ml && one < W - mr) {
+      svg.append('line').attr('x1', one).attr('x2', one).attr('y1', mt - 4).attr('y2', H - mb).style('stroke', 'var(--cds-chart-reference)').style('stroke-dasharray', '4 3');
+    }
+  });
+
+  // ---- 더 나아가: 의료 접근성 ----
+  dash.draw('med-key', (el) => { el.style.background = dash.colors[0]; });
+  dash.draw('med-rho', (el) => {
+    const s = dash.data('relations');
+    const r = s.status === 'ok' ? s.data.find((d) => d['key'] === 'med_doctors') : null;
+    el.textContent = r ? 'ρ ' + num(r['rho']).toFixed(2) + ', ' + (num(r['p값']) < 0.001 ? 'p<0.001' : 'p=' + num(r['p값']).toFixed(3)) : '—';
+  });
+  dash.draw('med', (el) => {
+    if (!gate(el, ['diagnosis'])) return;
+    const rows = rowsOf().map((r) => ({ name: r['시군'], v: num(r['자원종합병원거리_km']), gen: num(r['종합병원_곳']), dr: num(r['의사_명']), med: num(r['외국인의료관광_억원']), cl: r['웰니스클러스터'] === 'Y' }))
+      .filter((d) => !isNaN(d.v)).sort((a, b) => b.v - a.v);
+    const W = el.clientWidth || 600, rowH = 22;
+    const svg = d3.select(el).append('svg');
+    const lab = (d) => (d.cl ? STAR + ' ' : '') + short(d.name);
+    const ml = measure(svg, rows.map(lab)) + 10, mr = measure(svg, rows.map((d) => d.v.toFixed(1) + 'km')) + 10, mt = 22, mb = 6;
+    const H = mt + mb + rows.length * rowH;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H).attr('role', 'img').attr('aria-label', '시·군별 웰니스 자원에서 가장 가까운 종합병원까지 거리');
+    const x = d3.scaleLinear().domain([0, d3.max(rows, (d) => d.v) * 1.02]).range([ml, W - mr]);
+    const y = d3.scaleBand().domain(rows.map((d) => d.name)).range([mt, H - mb]).padding(0.3);
+    const nt = Math.max(2, Math.floor((W - ml - mr) / 90));
+    svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${mt})`).call(d3.axisTop(x).ticks(nt).tickSize(-(H - mt - mb)).tickFormat(''));
+    svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${mt})`).call(d3.axisTop(x).ticks(nt).tickFormat((v) => v + 'km').tickSizeOuter(0)).call((g) => g.select('.domain').remove());
+    const tip = tipFor(el);
+    svg.append('g').selectAll('rect').data(rows).join('rect')
+      .attr('x', x(0)).attr('y', (d) => y(d.name)).attr('height', y.bandwidth()).attr('width', (d) => Math.max(1, x(d.v) - x(0))).attr('rx', 2)
+      .style('fill', (d) => (d.gen === 0 ? 'var(--cds-chart-status-critical)' : dash.colors[0]))
+      .on('pointermove', (ev, d) => {
+        const [px, py] = d3.pointer(ev, el);
+        showTip(el, tip, [d.name + (d.cl ? ' (클러스터)' : ''), '가장 가까운 종합병원까지 ' + d.v.toFixed(1) + 'km', '종합병원 ' + d.gen + '곳 · 의사 ' + fmtInt(d.dr) + '명', '외국인 의료관광 지출 ' + d.med.toFixed(2) + '억 원'], px, py);
+      })
+      .on('pointerleave', () => { tip.hidden = true; });
+    svg.append('g').selectAll('text').data(rows).join('text').attr('class', 'lbl')
+      .attr('x', ml - 8).attr('y', (d) => y(d.name) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text(lab);
+    svg.append('g').selectAll('text').data(rows).join('text').attr('class', 'lbl')
+      .attr('x', (d) => x(d.v) + 6).attr('y', (d) => y(d.name) + y.bandwidth() / 2).attr('dy', '0.35em').text((d) => d.v.toFixed(1) + 'km');
+  });
+
+  // ---- 부록: 진단표 ----
+  dash.draw('rows', (tb) => {
+    tb.replaceChildren();
+    const s = dash.data('diagnosis'); if (s.status !== 'ok') return;
+    const fmtCell = {
+      '숙박비중_pct': (v) => num(v).toFixed(1) + '%',
+      '지출계절편차_배': (v) => num(v).toFixed(2) + '배',
+      '외지인1명당지출_원': (v) => fmtInt(num(v)) + '원',
+      '자원대비지출_배': (v) => num(v).toFixed(2) + '배',
+      '유형유지_pct': (v) => num(v).toFixed(0) + '%',
+    };
+    s.data.slice().sort((a, b) => num(a['묶음순서']) - num(b['묶음순서']) || num(a['자원대비지출_배']) - num(b['자원대비지출_배'])).forEach((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = encodeURIComponent(r['시군']);
+      const td = (cls, text) => { const c = document.createElement('td'); if (cls) c.className = cls; c.textContent = text; tr.appendChild(c); return c; };
+      td('', r['시군'] + (r['웰니스클러스터'] === 'Y' ? ' ' + STAR : ''));
+      td('', r['처방묶음']);
+      ['A_체류약함', 'B_계절의존', 'C_저객단가', 'D_자원미활용'].forEach((f) => {
+        const c = td('flag ' + (r[f] === 'Y' ? 'on' : 'off'), r[f] === 'Y' ? '●' : '·');
+        c.setAttribute('aria-label', r[f] === 'Y' ? '해당' : '해당 없음');
+      });
+      Object.keys(fmtCell).forEach((f) => td('num', fmtCell[f](r[f])));
+      tb.appendChild(tr);
+    });
+  });
+
+  // ---- 부록: 월별 히트맵 ----
+  dash.draw('heat', (el) => {
+    if (!gate(el, ['monthly', 'diagnosis'])) return;
+    const m = dash.data('monthly').data;
+    const order = rowsOf().slice().sort((a, b) => num(b['지출계절편차_배']) - num(a['지출계절편차_배'])).map((r) => r['시군']);
+    const months = Array.from(new Set(m.map((r) => String(r['기준년월'])))).sort();
+    const W = el.clientWidth || 600;
+    const svg = d3.select(el).append('svg');
+    const ml = measure(svg, order.map(short)) + 10, mr = 6, mt = 22, mb = 4;
+    const cell = Math.max(14, Math.min(44, (W - ml - mr) / months.length));
+    const rowH = Math.min(22, Math.max(16, cell * 0.65));
+    const H = mt + mb + order.length * rowH;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H).attr('role', 'img').attr('aria-label', '시·군별 월별 관광 지출 히트맵');
+    const x = d3.scaleBand().domain(months).range([ml, Math.min(W - mr, ml + cell * months.length)]).padding(0.06);
+    const y = d3.scaleBand().domain(order).range([mt, H - mb]).padding(0.08);
+    const vmax = d3.max(m, (r) => num(r['월평균대비']));
+    const op = d3.scaleLinear().domain([0.4, vmax]).range([0.06, 1]).clamp(true);
+    const tip = tipFor(el);
+    svg.append('g').selectAll('rect').data(m.filter((r) => order.includes(r['시군']))).join('rect')
+      .attr('x', (r) => x(String(r['기준년월']))).attr('y', (r) => y(r['시군'])).attr('width', x.bandwidth()).attr('height', y.bandwidth()).attr('rx', 2)
+      .style('fill', dash.colors[0]).style('fill-opacity', (r) => op(num(r['월평균대비'])))
+      .on('pointermove', (ev, r) => {
+        const [px, py] = d3.pointer(ev, el);
+        const ym = String(r['기준년월']);
+        showTip(el, tip, [r['시군'] + ' · ' + ym.slice(0, 4) + '년 ' + (+ym.slice(4)) + '월', '월평균의 ' + num(r['월평균대비']).toFixed(2) + '배', '내국인 지출 ' + fmtInt(num(r['내국인지출_억원'])) + '억 원'], px, py);
+      })
+      .on('pointerleave', () => { tip.hidden = true; });
+    const step = x.bandwidth() < 22 ? 2 : 1;
+    svg.append('g').selectAll('text').data(months.filter((_, i) => i % step === 0)).join('text').attr('class', 'lbl')
+      .attr('x', (v) => x(v) + x.bandwidth() / 2).attr('y', mt - 7).attr('text-anchor', 'middle').text((v) => (+v.slice(4)) + '월');
+    svg.append('g').selectAll('text').data(order).join('text').attr('class', 'lbl')
+      .attr('x', ml - 8).attr('y', (v) => y(v) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text(short);
+  });
+
+  // ---- 부록: 외국인 쏠림 ----
+  dash.draw('dumbbell', (el) => {
+    if (!gate(el, ['diagnosis'])) return;
+    const rows = rowsOf().map((r) => ({ name: r['시군'], dom: num(r['외지인점유_pct']), fr: num(r['외국인점유_pct']), fpc: num(r['외국인1명당지출_원']) }))
+      .filter((d) => !isNaN(d.fr)).sort((a, b) => b.fr - a.fr);
+    const W = el.clientWidth || 500, rowH = 19;
+    const svg = d3.select(el).append('svg');
+    const ml = measure(svg, rows.map((d) => short(d.name))) + 10, mr = 12, mt = 22, mb = 4;
+    const H = mt + mb + rows.length * rowH;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H).attr('role', 'img').attr('aria-label', '시·군별 내국인 외지인과 외국인의 강원 내 방문 비중');
+    const x = d3.scaleLinear().domain([0, d3.max(rows, (d) => Math.max(d.dom, d.fr)) * 1.05]).nice().range([ml, W - mr]);
+    const y = d3.scaleBand().domain(rows.map((d) => d.name)).range([mt, H - mb]);
+    svg.append('g').attr('class', 'grid').attr('transform', `translate(0,${mt})`).call(d3.axisTop(x).ticks(5).tickSize(-(H - mt - mb)).tickFormat(''));
+    svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${mt})`).call(d3.axisTop(x).ticks(5).tickFormat((v) => v + '%').tickSizeOuter(0)).call((g) => g.select('.domain').remove());
+    const tip = tipFor(el);
+    const g = svg.append('g').selectAll('g').data(rows).join('g')
+      .attr('transform', (d) => `translate(0,${y(d.name) + y.bandwidth() / 2})`)
+      .on('pointermove', (ev, d) => {
+        const [px, py] = d3.pointer(ev, el);
+        showTip(el, tip, [d.name, '외국인 비중 ' + d.fr.toFixed(1) + '%', '내국인 외지인 비중 ' + d.dom.toFixed(1) + '%', '외국인 1명당 ' + fmtInt(d.fpc) + '원'], px, py);
+      })
+      .on('pointerleave', () => { tip.hidden = true; });
+    g.append('rect').attr('x', ml).attr('y', -y.bandwidth() / 2).attr('width', W - ml - mr).attr('height', y.bandwidth()).style('fill', 'transparent');
+    g.append('line').attr('x1', (d) => x(d.dom)).attr('x2', (d) => x(d.fr)).style('stroke', 'var(--cds-chart-muted)').style('stroke-width', 2);
+    g.append('circle').attr('cx', (d) => x(d.dom)).attr('r', 4).style('fill', 'var(--cds-chart-muted)');
+    g.append('circle').attr('cx', (d) => x(d.fr)).attr('r', 4.5).style('fill', dash.colors[0]);
+    g.append('text').attr('class', 'lbl').attr('x', ml - 8).attr('dy', '0.35em').attr('text-anchor', 'end').text((d) => short(d.name));
+  });
+})();
+</script>
