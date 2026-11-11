@@ -74,7 +74,7 @@
     <div class="card tile">
       <span class="v"><span data-draw="t-d" data-source="summary" data-field="자원미활용_시군수" data-row="0">—</span><small>/ 18곳</small></span>
       <span class="k">웰니스 자원에 비해 관광 지출이 적은 시·군</span>
-      <span class="n">지출 점유가 자원 점유의 0.6배 미만</span>
+      <span class="n">자원 몫의 절반(0.5배)도 벌지 못하는 곳</span>
     </div>
     <div class="card tile">
       <span class="v" data-draw="t-lodg" data-source="summary" data-field="숙박비중_pct" data-row="0">—</span>
@@ -82,9 +82,9 @@
       <span class="n">호텔·콘도·펜션·기타숙박, 내국인 카드 기준</span>
     </div>
     <div class="card tile">
-      <span class="v"><span data-draw="t-c" data-source="summary" data-field="클러스터_자원미활용" data-row="0">—</span><small>/ 4곳</small></span>
-      <span class="k">정부 웰니스 클러스터 중 자원 대비 지출이 낮은 곳</span>
-      <span class="n">클러스터: 원주·양양·평창·정선</span>
+      <span class="v"><span data-draw="t-c" data-source="summary" data-field="클러스터_1배미만" data-row="0">—</span><small>/ 4곳</small></span>
+      <span class="k">정부 웰니스 클러스터 중 자원 몫만큼 벌지 못하는 곳</span>
+      <span class="n">자원 대비 지출 1배 미만 · 클러스터: 원주·양양·평창·정선</span>
     </div>
   </div>
 
@@ -104,8 +104,8 @@
       <p class="sub">강원 관광 지출에서 차지하는 몫 ÷ 웰니스 자원(관광공사 웰니스 관광지 + 휴양림·수목원)에서 차지하는 몫. 1배보다 작으면 자원에 비해 돈이 덜 들어오는 곳입니다. ★ 웰니스 관광 클러스터.</p>
     </div>
     <div class="legend">
-      <span><i style="background:var(--cds-chart-status-critical)"></i>0.6배 미만</span>
-      <span><i data-draw="gap-key"></i>0.6배 이상</span>
+      <span><i style="background:var(--cds-chart-status-critical)"></i>0.5배 미만 (자원 몫의 절반도 못 범)</span>
+      <span><i data-draw="gap-key"></i>0.5배 이상</span>
     </div>
     <div class="chart" data-draw="gap" data-source="diagnosis" style="min-height:440px"></div>
   </section>
@@ -114,7 +114,7 @@
     <div class="head">
       <p class="step">그래서</p>
       <h2>시·군마다 막힌 곳이 달라 처방도 달라야 한다</h2>
-      <p class="sub">숙박 비중, 계절 편차, 1명당 지출, 자원 대비 지출 네 기준으로 18개 시·군을 진단해 네 묶음으로 나눴습니다.</p>
+      <p class="sub">숙박 비중, 계절 편차, 1명당 지출, 자원 대비 지출 네 기준으로 18개 시·군을 진단해 묶었습니다. 거점은 1명당 지출이 강원 평균 이상이고 자원 몫 이상을 벌 때만 붙였습니다.</p>
     </div>
     <div class="groups">
       <div class="card group" id="g1">
@@ -141,6 +141,12 @@
         <div class="gfig"><span class="v" data-draw="g-fig-4" data-source="groups" data-field="외지인1명당지출_원" data-where="묶음순서=4">—</span><span class="k">외지인 1명당 지출 (평균)</span></div>
         <div class="gdo"><span>처방</span>주변 군 지역으로 방문객을 보내는 허브</div>
       </div>
+      <div class="card group ok" id="g5">
+        <span class="gname">관찰 대상</span>
+        <span class="gwho" data-draw="g-who-5" data-source="diagnosis"></span>
+        <div class="gfig"><span class="v" data-draw="g-fig-5" data-source="groups" data-field="외지인1명당지출_원" data-where="묶음순서=5">—</span><span class="k">외지인 1명당 지출 (강원 평균 이하)</span></div>
+        <div class="gdo"><span>처방</span>네 기준 모두 경계 근처라 다음 해 데이터로 다시 진단</div>
+      </div>
     </div>
   </section>
 
@@ -161,7 +167,7 @@
     <details id="table">
       <summary>시·군별 진단표</summary>
       <div class="inner">
-        <p class="sub">A 숙박 비중 5% 미만 · B 계절 편차 2.4배 이상 · C 외지인 1명당 1만 5천 원 미만 · D 자원 대비 지출 0.6배 미만. '기준 바꿔도 유지'는 네 기준값을 각각 ±20% 바꾼 81가지 경우 중 같은 진단이 나온 비율입니다.</p>
+        <p class="sub">A 숙박 비중 5% 미만(관광 지출의 20분의 1) · B 계절 편차 2.5배 이상(비수기가 성수기의 40% 이하) · C 외지인 1명당 지출이 강원 평균의 4분의 3 미만(약 14,875원) · D 자원 대비 지출 0.5배 미만(자원 몫의 절반). '기준 바꿔도 유지'는 네 기준값을 각각 ±20% 바꾼 81가지 경우 중 같은 진단이 나온 비율입니다.</p>
         <div class="tablewrap">
           <table data-source="diagnosis" data-row-key="시군">
             <thead>
@@ -214,7 +220,8 @@
           <li>웰니스 자원: 한국관광공사 웰니스관광정보(강원 15곳) + 국문 관광정보의 휴양림·수목원(94곳). 숙박 인프라는 같은 API에 등록된 숙박 531곳입니다. 모두 관광공사 등록 기준입니다.</li>
           <li>의료: 건강보험심사평가원 병원기본목록(강원 1,992곳). 종합병원은 상급종합·종합병원이며, 거리는 도로가 아닌 직선거리입니다. 외국인 의료관광 지출은 강원 전체 약 18억 원으로 규모가 작습니다.</li>
           <li>상관은 18개 시·군의 1년치 비교라 인과를 증명하지 않습니다. 진단 기준값은 분석자가 정한 값이며 ±20% 민감도 분석으로 결과가 유지되는지 확인했습니다.</li>
-          <li>규칙 없이 네 지표로 k-means 군집을 만들면(k=3) 자원 미활용 군 지역 / 거점·도시 / 리조트로 나뉘며 규칙 기반 진단과의 일치도(ARI)는 0.47입니다.</li>
+          <li>진단 기준은 한 문장으로 설명되는 값으로 정하고, 18개 시·군 값이 끊기는 빈 구간(가장 가까운 시·군과 3% 이상 차이)에 두었습니다. 기준을 각각 ±20% 바꾼 81가지 경우에서 평균 81%가 같은 진단을 유지합니다.</li>
+          <li>규칙 없이 네 지표로 k-means 군집을 만들면(k=3) 자원 미활용 군 지역 / 거점·도시 / 리조트로 나뉘며 규칙 기반 진단과의 일치도(ARI)는 0.56입니다.</li>
           <li>재현: Python 파이프라인(원자료 → 지표 → 진단), 분석 노트북, 테스트로 같은 결과를 다시 만들 수 있습니다.</li>
         </ul>
       </div>
@@ -226,7 +233,7 @@
 (function () {
   const num = (v) => (v === null || v === undefined || v === '' ? NaN : +v);
   const STAR = '★';
-  const RES_LIMIT = 0.6; // 자원 미활용 기준 (분석자가 정한 값)
+  const RES_LIMIT = 0.5; // 자원 미활용 기준: 자원 몫의 절반
   const fmtInt = d3.format(',');
   const short = (s) => String(s).replace(/(시|군)$/, '');
 
@@ -241,7 +248,7 @@
       const top3 = (col) => Math.round(d3.sum(diagnosis.map((r) => n(r[col])).sort((a, b) => b - a).slice(0, 3)));
       return [{
         '자원미활용_시군수': diagnosis.filter((r) => r['D_자원미활용'] === 'Y').length,
-        '클러스터_자원미활용': diagnosis.filter((r) => r['D_자원미활용'] === 'Y' && r['웰니스클러스터'] === 'Y').length,
+        '클러스터_1배미만': diagnosis.filter((r) => r['웰니스클러스터'] === 'Y' && +r['자원대비지출_배'] < 1).length,
         '숙박비중_pct': Math.round((lodging / spend) * 1000) / 10,
         '외국인상위3_pct': top3('외국인점유_pct'),
         '외지인상위3_pct': top3('외지인점유_pct'),
@@ -251,7 +258,7 @@
 
   dash.calc('groups', {
     title: '처방 묶음별 평균',
-    description: '네 처방 묶음마다 속한 시·군 지표의 단순 평균',
+    description: '처방 묶음마다 속한 시·군 지표의 단순 평균',
     inputs: ['diagnosis'],
     fn: (diagnosis) => {
       const n = (v) => +v;
@@ -313,7 +320,7 @@
   }
   dash.draw('t-d', single('summary', '자원미활용_시군수', String));
   dash.draw('t-lodg', single('summary', '숙박비중_pct', (v) => v + '%'));
-  dash.draw('t-c', single('summary', '클러스터_자원미활용', String));
+  dash.draw('t-c', single('summary', '클러스터_1배미만', String));
   dash.draw('f-top3', single('summary', '외국인상위3_pct', (v) => v + '%'));
   dash.draw('d-top3', single('summary', '외지인상위3_pct', (v) => v + '%'));
   dash.draw('gap-key', (el) => { el.style.background = dash.colors[0]; });
@@ -321,7 +328,7 @@
   dash.draw('fkey-for', (el) => { el.style.background = dash.colors[0]; });
 
   // 처방 묶음: 시·군 목록과 대표 숫자
-  [1, 2, 3, 4].forEach((g) => {
+  [1, 2, 3, 4, 5].forEach((g) => {
     dash.draw('g-who-' + g, (el) => {
       const rows = rowsOf().filter((r) => +r['묶음순서'] === g).sort((a, b) => num(b['외지인_만명']) - num(a['외지인_만명']));
       el.textContent = rows.map((r) => short(r['시군']) + (r['웰니스클러스터'] === 'Y' ? STAR : '')).join(' · ');
@@ -332,6 +339,7 @@
   dash.draw('g-fig-2', single('groups', '지출계절편차_배', (v) => (+v).toFixed(1) + '배', byGroup(2)));
   dash.draw('g-fig-3', single('groups', '숙박비중_pct', (v) => (+v).toFixed(1) + '%', byGroup(3)));
   dash.draw('g-fig-4', single('groups', '외지인1명당지출_원', (v) => fmtInt(v) + '원', byGroup(4)));
+  dash.draw('g-fig-5', single('groups', '외지인1명당지출_원', (v) => fmtInt(v) + '원', byGroup(5)));
 
   // ---- 근거: 연결 고리 그림 ----
   dash.draw('chain', (el) => {

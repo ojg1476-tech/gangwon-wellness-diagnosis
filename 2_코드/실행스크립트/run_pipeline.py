@@ -94,6 +94,9 @@ def main():
     sites.to_csv(config.PROCESSED / "wellness_sites_nearest_hospital.csv", index=False, encoding="utf-8-sig")
     d.to_csv(config.PROCESSED / "diagnosis.csv", encoding="utf-8-sig")
     s.to_csv(config.PROCESSED / "sensitivity.csv", encoding="utf-8-sig")
+    margins = diagnose.threshold_margins(f)
+    margins.to_csv(config.PROCESSED / "threshold_margins.csv", index=False, encoding="utf-8-sig")
+    print("\n기준값과 가장 가까운 시군까지 간격:\n" + margins.round(3).to_string(index=False))
 
     # 대시보드용
     to_dashboard(d, s).to_csv(config.PROCESSED / "dashboard_diagnosis.csv", index=False, encoding="utf-8")

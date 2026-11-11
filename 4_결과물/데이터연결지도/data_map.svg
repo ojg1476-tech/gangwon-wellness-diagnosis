@@ -110,13 +110,13 @@
 <text x="984" y="222.5" font-size="13.5" fill="#4B5563">자고 가나?  숙박 5% 미만이면 약함</text>
 <rect x="970" y="252.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
 <text x="984" y="283.5" font-size="16" font-weight="700" fill="#1F2933">B 비수기</text>
-<text x="984" y="307.5" font-size="13.5" fill="#4B5563">계절을 타나?  2.4배 이상이면 의존</text>
+<text x="984" y="307.5" font-size="13.5" fill="#4B5563">계절을 타나?  2.5배 이상이면 의존</text>
 <rect x="970" y="337.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
 <text x="984" y="368.5" font-size="16" font-weight="700" fill="#1F2933">C 객단가</text>
-<text x="984" y="392.5" font-size="13.5" fill="#4B5563">얼마 쓰나?  1만 5천 원 미만이면 낮음</text>
+<text x="984" y="392.5" font-size="13.5" fill="#4B5563">얼마 쓰나?  강원 평균의 3/4 미만이면 낮음</text>
 <rect x="970" y="422.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
 <text x="984" y="453.5" font-size="16" font-weight="700" fill="#1F2933">D 미스매치</text>
-<text x="984" y="477.5" font-size="13.5" fill="#4B5563">자원만큼 버나?  0.6배 미만이면 미활용</text>
+<text x="984" y="477.5" font-size="13.5" fill="#4B5563">자원만큼 버나?  0.5배 미만이면 미활용</text>
 <rect x="970" y="507.5" width="270" height="69.0" rx="10" fill="#FFF6E5" stroke="#B7791F" stroke-width="1.4"/>
 <text x="984" y="538.5" font-size="16" font-weight="700" fill="#1F2933">E 의료 연계</text>
 <text x="984" y="562.5" font-size="13.5" fill="#4B5563">병원이 가까운가?</text>
@@ -129,12 +129,12 @@
 <rect x="1310" y="328.0" width="330" height="129.0" rx="10" fill="#FCEDE9" stroke="#C8553D" stroke-width="2.2"/>
 <text x="1324" y="359.0" font-size="17" font-weight="700" fill="#1F2933">시·군마다 막힌 곳이 달라</text>
 <text x="1324" y="381.0" font-size="17" font-weight="700" fill="#1F2933">처방도 다르다</text>
-<text x="1324" y="405.0" font-size="13.5" fill="#4B5563">자원이 돈이 되지 못하는 곳 7</text>
-<text x="1324" y="424.0" font-size="13.5" fill="#4B5563">계절에 쏠리는 곳 4 · 당일치기 도시 3</text>
-<text x="1324" y="443.0" font-size="13.5" fill="#4B5563">체류·소비 거점 4</text>
+<text x="1324" y="405.0" font-size="13.5" fill="#4B5563">자원이 돈이 되지 못하는 곳 6 · 계절에 쏠리는 곳 3</text>
+<text x="1324" y="424.0" font-size="13.5" fill="#4B5563">당일치기 도시 3 · 체류·소비 거점 5</text>
+<text x="1324" y="443.0" font-size="13.5" fill="#4B5563">관찰 대상 1 (정선)</text>
 <rect x="1310" y="491.0" width="330" height="88.0" rx="10" fill="#FCEDE9" stroke="#C8553D" stroke-width="2.2"/>
 <text x="1324" y="522.0" font-size="17" font-weight="700" fill="#1F2933">의료웰니스 거점은 원주뿐</text>
-<text x="1324" y="546.0" font-size="13.5" fill="#4B5563">양양·정선·평창 종합병원 0곳</text>
+<text x="1324" y="546.0" font-size="13.5" fill="#4B5563">클러스터 중 양양·정선·평창은 종합병원 0곳</text>
 <text x="1324" y="565.0" font-size="13.5" fill="#4B5563">의사 수↔외국인 의료관광 ρ 0.85</text>
 <text x="40" y="656" font-size="12.5" fill="#9AA3AE">ρ: 18개 시·군 순위 상관(Spearman). 함께 움직이는 정도이며 원인을 증명하지 않는다. 출처: 한국관광 데이터랩, 한국관광공사·건강보험심사평가원 공공데이터 API.</text>
 </svg>
